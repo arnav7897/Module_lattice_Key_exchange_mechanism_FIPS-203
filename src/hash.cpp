@@ -3,15 +3,11 @@
 #include <random>
 #include <iomanip>
 #include "ml-kem/K_PKE.hpp"
-// Include your Kyber keygen header here
-// #include "k_pke.hpp"  // assuming K_PKE_KeyGen is declared there
 
 using namespace std;
 
-// --- Dummy Declaration (remove this when actual function is included)
 pair<vector<ui8>, vector<ui8>> K_PKE_KeyGen(vector<ui8>& seed);
 
-// Generate a random 32-byte seed
 vector<ui8> random_seed() {
     random_device rd;
     mt19937 gen(rd());
@@ -24,7 +20,6 @@ vector<ui8> random_seed() {
     return seed;
 }
 
-// Print a vector as hex
 void print_hex(const vector<ui8>& data, size_t bytes = 16) {
     for (size_t i = 0; i < bytes && i < data.size(); i++) {
         cout << hex << setw(2) << setfill('0') << (int)data[i] << " ";
