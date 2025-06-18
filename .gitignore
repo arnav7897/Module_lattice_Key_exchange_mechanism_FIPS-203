@@ -33,5 +33,5 @@
 
 #folders
 build/
-
+.vscode/
 token.txt
