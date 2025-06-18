@@ -4,10 +4,10 @@
 
 using namespace std;
 
+
 int main() {
     const char* msg = "hello world";
     unsigned char hash[32];
-
     FIPS202_SHA3_256(reinterpret_cast<const unsigned char*>(msg), strlen(msg), hash);
 
     std::cout << "SHA3-256(\"" << msg << "\") = ";
