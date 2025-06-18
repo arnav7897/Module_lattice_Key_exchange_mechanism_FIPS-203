@@ -1,10 +1,11 @@
-#pragma one
+#pragma once
 
-#include <vector>
 #include "param.hpp"
+#include "hash.hpp"
+#include "base.hpp"
 
 using namespace std;
 
-vector<ui16> NTT_sample(vector<ui8>);
+vector<i16> NTT_sample(vector<ui8> &random, ui8 i ,ui8 j);
 
-vector<ui16> Binomial_sample(vector<ui8>);
+vector<i16> Binomial_sample(vector<ui8> &random , int eta);
