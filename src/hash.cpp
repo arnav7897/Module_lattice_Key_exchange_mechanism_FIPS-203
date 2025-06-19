@@ -1,47 +1,34 @@
-#include <iostream>
-#include <vector>
-#include <random>
-#include <iomanip>
 #include "ml-kem/K_PKE.hpp"
+#include <iostream>
+#include <cstdlib> 
+#include <ctime>    
 
 using namespace std;
 
-pair<vector<ui8>, vector<ui8>> K_PKE_KeyGen(vector<ui8>& seed);
-
-vector<ui8> random_seed() {
-    random_device rd;
-    mt19937 gen(rd());
-    uniform_int_distribution<> dis(0, 255);
+int main() {
+    srand(static_cast<unsigned>(time(0)));
 
     vector<ui8> seed(32);
-    for (int i = 0; i < 32; i++) {
-        seed[i] = static_cast<ui8>(dis(gen));
+    for (int i = 0; i < 32; i++) seed[i] = rand() % 256;
+    auto[key_sk, key_pk] = K_PKE_KeyGen(seed);
+    cout << "Private Key Size: " << key_sk.size() << " bytes\n";
+    cout << "Public Key Size:  " << key_pk.size() << " bytes\n";
+
+    vector<ui8> message(32);
+    for (int i = 0; i < 32; i++) message[i] = rand() % 256;
+
+    vector<ui8> randomness(32);
+    for (int i = 0; i < 32; i++) randomness[i] = rand() % 256;
+
+    // Encrypt
+    vector<ui8> ciphertext = K_PKE_Encrypt(key_pk, message, randomness);
+    cout << "Ciphertext Size:  " << ciphertext.size() << " bytes\n";
+
+    cout << "First 16 bytes of ciphertext: ";
+    for (int i = 0; i < 16 && i < ciphertext.size(); i++) {
+        printf("%02x ", ciphertext[i]);
     }
-    return seed;
-}
-
-void print_hex(const vector<ui8>& data, size_t bytes = 16) {
-    for (size_t i = 0; i < bytes && i < data.size(); i++) {
-        cout << hex << setw(2) << setfill('0') << (int)data[i] << " ";
-    }
-    cout << dec << "\n";
-}
-
-int main() {
-    vector<ui8> seed = random_seed();
-
-    pair<vector<ui8>, vector<ui8>> keys = K_PKE_KeyGen(seed);
-    vector<ui8> key_priv = keys.first;
-    vector<ui8> key_pub = keys.second;
-
-    cout << "Private Key Length: " << key_priv.size() << " bytes\n";
-    cout << "Public Key Length : " << key_pub.size() << " bytes\n";
-
-    cout << "\nFirst 16 bytes of Private Key:\n";
-    print_hex(key_priv);
-
-    cout << "\nFirst 16 bytes of Public Key:\n";
-    print_hex(key_pub);
+    cout << "\n";
 
     return 0;
 }

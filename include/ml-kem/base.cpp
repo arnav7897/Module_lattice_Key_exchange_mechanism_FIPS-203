@@ -60,3 +60,30 @@ vector<i16> ByteDecode(vector<ui8> &b, int d){
     }
     return f;
 }
+// Compress𝑑 ∶ ℤ_𝑞 ⟶ ℤ_(2^𝑑)
+// 𝑥 ⟼ ⌈(2𝑑/𝑞) ⋅ 𝑥⌋ mod 2𝑑 
+vector<i16> Compress( vector<i16>& a, int d) {
+    int numerator = 1 << d;  // 2^d
+    vector<i16> result(a.size());
+    for (size_t i = 0; i < a.size(); i++) {
+        // Perform rounding and scaling: [0, Q) -> [0, 2^d)
+        float scaled = static_cast<float>(a[i]) * numerator / Kyber_Q;
+        int rounded = static_cast<int>(round(scaled)) % numerator;
+        // Ensure non-negative result (optional, depends on your Q arithmetic)
+        if (rounded < 0) rounded += numerator;
+        result[i] = static_cast<i16>(rounded);
+    }
+    return result;
+}
+
+vector<i16> Decompress( vector<i16>& a, int d) {
+    int numerator = 1 << d;  // 2^d
+    vector<i16> result(a.size());
+    for (size_t i = 0; i < a.size(); i++) {
+        float scaled = static_cast<float>(a[i]) * Kyber_Q / numerator;
+        int rounded = static_cast<int>(round(scaled)) % Kyber_Q;
+        if (rounded < 0) rounded += Kyber_Q;
+        result[i] = static_cast<i16>(rounded);
+    }
+    return result;
+}

@@ -11,6 +11,7 @@ typedef uint8_t ui8;
 typedef unsigned long long int u64;
 typedef unsigned int ui;
 typedef int16_t i16;
+typedef int32_t i32;
 
 /** 
 | Parameter Name         | ML-KEM-512   | ML-KEM-768   | ML-KEM-1024         |
