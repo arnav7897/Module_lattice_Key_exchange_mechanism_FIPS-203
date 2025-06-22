@@ -3,6 +3,7 @@
 #include "param.hpp"
 #include "hash.hpp"
 #include "base.hpp"
+#include "ntt.hpp"
 
 using namespace std;
 

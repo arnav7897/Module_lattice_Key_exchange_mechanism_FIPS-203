@@ -11,7 +11,7 @@ include_directories(
     ${PROJECT_SOURCE_DIR}/third_party/keccak
 )
 
-# Add source files
+# Main source files
 set(SOURCES
     src/hash.cpp
     include/ml-kem/base.cpp
@@ -21,5 +21,18 @@ set(SOURCES
     third_party/keccak/simple_fips_202.c
 )
 
-# Create the executable
+# Main executable
 add_executable(hash.exe ${SOURCES})
+
+# ========================
+# Unit test for base.cpp
+# ========================
+#add_executable(base_test.exe test/base_test.cpp third_party/keccak/simple_fips_202.c include/ml-kem/sampling.cpp include/ml-kem/base.cpp include/ml-kem/ntt.cpp)
+
+add_executable(ntt_test.exe test/ntt_test.cpp third_party/keccak/simple_fips_202.c include/ml-kem/sampling.cpp include/ml-kem/base.cpp include/ml-kem/ntt.cpp )
+# Optionally link additional libs if needed (e.g., crypto)
+# target_link_libraries(base_test ...)
+
+# Add test to CTest (optional but useful)
+enable_testing()
+add_test(NAME BaseTest COMMAND base_test)

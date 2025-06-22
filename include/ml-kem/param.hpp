@@ -49,7 +49,7 @@ Kyber-1024  4   2   2   11  5   2−174               1568 B      1568 B
 #define Kyber_Q 3329
 #define eta1 3
 #define eta2 2
-#define k 2 // for 512 implementation
+#define Kyber_k 2 // for 512 implementation
 #define du 10
 #define dv 4
 
