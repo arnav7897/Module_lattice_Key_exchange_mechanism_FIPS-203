@@ -33,5 +33,6 @@
 
 #folders
 build/
-.vscode/
+.vscode/settings.json
 token.txt
+

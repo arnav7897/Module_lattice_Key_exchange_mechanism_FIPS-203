@@ -112,6 +112,8 @@ unsigned int len, start, j, k;
   }
 }
 
+
+
 /*************************************************
 * Name:        invntt_tomont
 *
@@ -164,6 +166,17 @@ void basemul(int16_t* r, int16_t* a, int16_t* b, int16_t zeta)
   r[1] += fqmul(a[1], b[0]);
 }
 
+/*************************************************
+* Name:        poly_multiply_pointwise_mont
+*
+* Description: Performs pointwise multiplication of two polynomials
+*              in NTT domain using base multiplication with zetas.
+*
+* Arguments:   - vector<int16_t>& a: polynomial a (in NTT domain)
+*              - vector<int16_t>& b: polynomial b (in NTT domain)
+*
+* Returns:     - vector<int16_t>: result of pointwise multiplication
+**************************************************/
 vector<i16> poly_multiply_pointwise_mont(vector<i16> &a, vector<i16> & b){
   vector<i16>result(Kyber_N);
   for(int i =0 ;i<Kyber_N/4;i++){
@@ -173,12 +186,29 @@ vector<i16> poly_multiply_pointwise_mont(vector<i16> &a, vector<i16> & b){
   return result;
 }
 
+/*************************************************
+* Name:        poly_reduce
+*
+* Description: Applies Barrett reduction to each coefficient of the polynomial
+*
+* Arguments:   - vector<int16_t>& a: input/output polynomial
+**************************************************/
 void poly_reduce(vector<i16> & a){
   for(int i = 0;i<Kyber_N;i++){
     a[i] = barrett_reduce(a[i]);
   }
 }
 
+/*************************************************
+* Name:        poly_add
+*
+* Description: Adds two polynomials coefficient-wise in Z_q
+*
+* Arguments:   - vector<int16_t>& a: first operand
+*              - vector<int16_t>& b: second operand
+*
+* Returns:     - vector<int16_t>: result of a + b mod q
+**************************************************/
 vector<i16> poly_add(vector<i16> &a , vector<i16> & b){
   vector<i16> result(Kyber_N);
   for(int i =0 ;i<Kyber_N ;i++){
@@ -187,14 +217,16 @@ vector<i16> poly_add(vector<i16> &a , vector<i16> & b){
   return result;
 }
 
-/*************************************************
+/**
+***********************************************
 * Name:        poly_tomont
 *
 * Description: Inplace conversion of all coefficients of a polynomial
 *              from normal domain to Montgomery domain
 *
 * Arguments:   - vector<i16> r: pointer to input/output polynomial
-**************************************************/
+*************************************************
+*/
 void poly_tomont(vector<i16> &r){
   unsigned int i;
   const int16_t f = (1ULL << 32) % Kyber_Q;

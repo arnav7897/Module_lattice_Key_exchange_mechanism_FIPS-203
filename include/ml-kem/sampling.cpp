@@ -1,5 +1,21 @@
 #include "sampling.hpp"
 
+/*************************************************
+* Name:        NTT_sample
+*
+* Description: Deterministically samples a polynomial in Z_q^256
+*              using a seed and two indices (i, j_index). This is used
+*              to generate matrix A deterministically.
+*
+*              Implements rejection sampling: for each 3-byte chunk,
+*              tries to generate two integers < q from 12-bit chunks.
+*
+* Arguments:   - vector<ui8>& random: 32-byte seed
+*              - ui8 i: row index of matrix A
+*              - ui8 j_index: column index of matrix A
+*
+* Returns:     - vector<i16>: sampled polynomial in Z_q^256
+**************************************************/
 vector<i16> NTT_sample(vector<ui8> &random, ui8 i, ui8 j_index) {
     ui8 seed[34];
     for (int index = 0; index < 32; index++) {
@@ -27,16 +43,20 @@ vector<i16> NTT_sample(vector<ui8> &random, ui8 i, ui8 j_index) {
 }
 
 
-/**
-Input: byte array 𝐵 ∈ 𝔹^64𝜂.
-Output: array 𝑓 ∈ ℤ^256_𝑞 . ▷ the coefficients of the sampled polynomial 
-
- * Binomial_sample: centered‑binomial distribution with parameter eta
- * Input:  random  = exactly 64*eta bytes of cryptographic randomness
- *         eta     = parameter (e.g. eta1 or eta2)
- * Output: length‑256 polynomial f in Z_q whose coefficients are
- *         (sum of eta bits) – (sum of next eta bits), mapped mod q
- */
+/*************************************************
+* Name:        Binomial_sample
+*
+* Description: Samples a polynomial with coefficients distributed
+*              according to a centered binomial distribution with
+*              parameter `eta`. Each coefficient is computed as:
+*              (sum of first eta bits) - (sum of next eta bits),
+*              which gives integer in [-eta, eta], mapped to Z_q.
+*
+* Arguments:   - vector<ui8>& random: byte array of length 64 * eta
+*              - int eta: binomial sampling parameter (e.g., eta1 or eta2)
+*
+* Returns:     - vector<i16>: length-256 polynomial with coefficients ∈ Z_q
+**************************************************/
 vector<i16> Binomial_sample(vector<ui8>& random, int eta) {
     // 1) Exact‐length check
     size_t needed = 64 * eta;

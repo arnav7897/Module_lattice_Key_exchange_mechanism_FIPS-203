@@ -30,11 +30,11 @@ int main() {
     // Key generation
     auto [sk, pk] = K_PKE_KeyGen(seed);
 
-    // print_bytes("Public Key", pk, 64);
-    // print_bytes("Secret Key", sk, 64);
+    print_bytes("Public Key", pk, 64);
+    print_bytes("Secret Key", sk, 64);
 
     vector<ui8> cipher_text = K_PKE_Encrypt(pk,msg,r);
-    // print_bytes("cipher text",cipher_text,64);
+    print_bytes("cipher text",cipher_text,64);
 
     vector<ui8> msg_extracted = K_PKE_Decrypt(sk,cipher_text);
     print_bytes("extracted_message ",msg_extracted,32);

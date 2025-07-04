@@ -2,6 +2,21 @@
 
 #include <cstring>
 
+/*************************************************
+* Name:        K_PKE_KeyGen
+*
+* Description: Generates Kyber public and private key pair.
+*              - Expands the given seed to derive matrix seed and noise seed.
+*              - Constructs public matrix A deterministically from a_seed.
+*              - Samples short vectors s and e using CBD_eta1.
+*              - Transforms s, e to NTT domain and computes t = A*s + e.
+*              - Applies Montgomery transform and reduction.
+*              - Encodes public and private keys in byte format.
+*
+* Arguments:   - vector<ui8>& seed: 32-byte input seed
+*
+* Returns:     - pair of (private_key, public_key)
+**************************************************/
 pair<vector<ui8>, vector<ui8>> K_PKE_KeyGen(vector<ui8>& seed) {
     if (seed.size() != 32) {
 
@@ -93,6 +108,22 @@ pair<vector<ui8>, vector<ui8>> K_PKE_KeyGen(vector<ui8>& seed) {
     return {private_key, public_key};
 }
 
+/*************************************************
+* Name:        K_PKE_Encrypt
+*
+* Description: Encrypts a message using the Kyber public key.
+*              - Regenerates matrix A from seed.
+*              - Samples short vector y and noise vectors e1, e2.
+*              - Computes u = A*y + e1 and v = t*y + e2 + m (all mod q).
+*              - Applies NTT and inverse NTT where required.
+*              - Compresses and encodes u and v to form ciphertext.
+*
+* Arguments:   - vector<ui8>& public_key: public key bytes
+*              - vector<ui8>& msg: message (32 bytes)
+*              - vector<ui8>& random: 32-byte randomness for encryption
+*
+* Returns:     - vector<ui8>: ciphertext
+**************************************************/
 vector<ui8> K_PKE_Encrypt(vector<ui8> &public_key, vector<ui8> &msg, vector<ui8> &random) {
     vector<vector<ui8>> t_part(Kyber_k, vector<ui8>(384, 0));
     vector<ui8> a_seed(32, 0);
@@ -204,7 +235,20 @@ vector<ui8> K_PKE_Encrypt(vector<ui8> &public_key, vector<ui8> &msg, vector<ui8>
 }
 
 
-
+/*************************************************
+* Name:        K_PKE_Decrypt
+*
+* Description: Decrypts a ciphertext using the Kyber private key.
+*              - Decompresses and decodes ciphertext into vectors u and v.
+*              - Decodes secret key s from byte format.
+*              - Computes v - <s, u> to recover w.
+*              - Compresses w to extract the original message.
+*
+* Arguments:   - vector<ui8>& secret_key: private key bytes
+*              - vector<ui8>& c: ciphertext bytes
+*
+* Returns:     - vector<ui8>: decrypted message
+**************************************************/
 vector<ui8> K_PKE_Decrypt(vector<ui8> &secret_key, vector<ui8> &c){
     // step 1: extracting c1,c2 from cipher_text
     vector<vector<ui8>> c1(Kyber_k, vector<ui8>(32 * du, 0));
