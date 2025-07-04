@@ -13,16 +13,17 @@ include_directories(
 
 # Main source files
 set(SOURCES
-    src/hash.cpp
+    src/test.cpp
     include/ml-kem/base.cpp
     include/ml-kem/sampling.cpp
     include/ml-kem/ntt.cpp
     include/ml-kem/K_PKE.cpp
+    include/ml-kem/ML-KEM.cpp
     third_party/keccak/simple_fips_202.c
 )
 
 # Main executable
-add_executable(hash.exe ${SOURCES})
+add_executable(Test.exe ${SOURCES})
 
 # ========================
 # Unit test for base.cpp

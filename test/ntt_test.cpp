@@ -15,7 +15,12 @@ bool test_ntt_roundtrip() {
     vector<ui8> seed(32);
     srand(time(0));
     for (int i = 0; i < 32; i++) seed[i] = rand() % 256;
-
+    vector<ui8> test_sha(32);
+    FIPS202_SHA3_256(seed.data(),32,test_sha.data());
+    cout<<"test for sha "<<endl;
+    for(int i =0 ;i<32;i++){
+        printf("%d %d\n",test_sha[i],seed[i]);
+    }
     vector<i16> original = NTT_sample(seed, 0, 0); // includes montgomery encode
     vector<i16> test = original;
 

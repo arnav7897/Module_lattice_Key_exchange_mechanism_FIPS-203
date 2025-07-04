@@ -4,7 +4,7 @@
 #include "ntt.hpp"
 #include "sampling.hpp"
 #include "hash.hpp"
-#include <utility> // pairs 
+#include <utility> 
 
 pair<vector<ui8>,vector<ui8>> K_PKE_KeyGen(vector<ui8> &seed);
 
