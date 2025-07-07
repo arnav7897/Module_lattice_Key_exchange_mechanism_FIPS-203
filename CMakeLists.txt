@@ -13,7 +13,6 @@ include_directories(
 
 # Main source files
 set(SOURCES
-    src/test.cpp
     include/ml-kem/base.cpp
     include/ml-kem/sampling.cpp
     include/ml-kem/ntt.cpp
@@ -23,17 +22,7 @@ set(SOURCES
 )
 
 # Main executable
-add_executable(Test.exe ${SOURCES})
-
-# ========================
-# Unit test for base.cpp
-# ========================
-#add_executable(base_test.exe test/base_test.cpp third_party/keccak/simple_fips_202.c include/ml-kem/sampling.cpp include/ml-kem/base.cpp include/ml-kem/ntt.cpp)
-
-add_executable(ntt_test.exe test/ntt_test.cpp third_party/keccak/simple_fips_202.c include/ml-kem/sampling.cpp include/ml-kem/base.cpp include/ml-kem/ntt.cpp )
-# Optionally link additional libs if needed (e.g., crypto)
-# target_link_libraries(base_test ...)
-
-# Add test to CTest (optional but useful)
-enable_testing()
-add_test(NAME BaseTest COMMAND base_test)
+add_executable(Test.exe src/test.cpp ${SOURCES})
+add_executable(mlkem_keygen src/mlkem_keygen.cpp ${SOURCES})
+add_executable(mlkem_encaps src/mlkem_encaps.cpp ${SOURCES})
+add_executable(mlkem_decaps src/mlkem_decaps.cpp ${SOURCES})

@@ -65,16 +65,6 @@ CMAKE_BINARY_DIR = /mnt/c/Users/Asus/Documents/extra/crypto/LWE-Cryptosystem/bui
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-.PHONY : test/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "No interactive CMake dialog available..."
@@ -140,17 +130,43 @@ Test.exe/fast:
 .PHONY : Test.exe/fast
 
 #=============================================================================
-# Target rules for targets named ntt_test.exe
+# Target rules for targets named mlkem_keygen
 
 # Build rule for target.
-ntt_test.exe: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ntt_test.exe
-.PHONY : ntt_test.exe
+mlkem_keygen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mlkem_keygen
+.PHONY : mlkem_keygen
 
 # fast build rule for target.
-ntt_test.exe/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ntt_test.exe.dir/build.make CMakeFiles/ntt_test.exe.dir/build
-.PHONY : ntt_test.exe/fast
+mlkem_keygen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_keygen.dir/build.make CMakeFiles/mlkem_keygen.dir/build
+.PHONY : mlkem_keygen/fast
+
+#=============================================================================
+# Target rules for targets named mlkem_encaps
+
+# Build rule for target.
+mlkem_encaps: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mlkem_encaps
+.PHONY : mlkem_encaps
+
+# fast build rule for target.
+mlkem_encaps/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_encaps.dir/build.make CMakeFiles/mlkem_encaps.dir/build
+.PHONY : mlkem_encaps/fast
+
+#=============================================================================
+# Target rules for targets named mlkem_decaps
+
+# Build rule for target.
+mlkem_decaps: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mlkem_decaps
+.PHONY : mlkem_decaps
+
+# fast build rule for target.
+mlkem_decaps/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_decaps.dir/build.make CMakeFiles/mlkem_decaps.dir/build
+.PHONY : mlkem_decaps/fast
 
 include/ml-kem/K_PKE.o: include/ml-kem/K_PKE.cpp.o
 .PHONY : include/ml-kem/K_PKE.o
@@ -158,6 +174,9 @@ include/ml-kem/K_PKE.o: include/ml-kem/K_PKE.cpp.o
 # target to build an object file
 include/ml-kem/K_PKE.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Test.exe.dir/build.make CMakeFiles/Test.exe.dir/include/ml-kem/K_PKE.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_keygen.dir/build.make CMakeFiles/mlkem_keygen.dir/include/ml-kem/K_PKE.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_encaps.dir/build.make CMakeFiles/mlkem_encaps.dir/include/ml-kem/K_PKE.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_decaps.dir/build.make CMakeFiles/mlkem_decaps.dir/include/ml-kem/K_PKE.cpp.o
 .PHONY : include/ml-kem/K_PKE.cpp.o
 
 include/ml-kem/K_PKE.i: include/ml-kem/K_PKE.cpp.i
@@ -166,6 +185,9 @@ include/ml-kem/K_PKE.i: include/ml-kem/K_PKE.cpp.i
 # target to preprocess a source file
 include/ml-kem/K_PKE.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Test.exe.dir/build.make CMakeFiles/Test.exe.dir/include/ml-kem/K_PKE.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_keygen.dir/build.make CMakeFiles/mlkem_keygen.dir/include/ml-kem/K_PKE.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_encaps.dir/build.make CMakeFiles/mlkem_encaps.dir/include/ml-kem/K_PKE.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_decaps.dir/build.make CMakeFiles/mlkem_decaps.dir/include/ml-kem/K_PKE.cpp.i
 .PHONY : include/ml-kem/K_PKE.cpp.i
 
 include/ml-kem/K_PKE.s: include/ml-kem/K_PKE.cpp.s
@@ -174,6 +196,9 @@ include/ml-kem/K_PKE.s: include/ml-kem/K_PKE.cpp.s
 # target to generate assembly for a file
 include/ml-kem/K_PKE.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Test.exe.dir/build.make CMakeFiles/Test.exe.dir/include/ml-kem/K_PKE.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_keygen.dir/build.make CMakeFiles/mlkem_keygen.dir/include/ml-kem/K_PKE.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_encaps.dir/build.make CMakeFiles/mlkem_encaps.dir/include/ml-kem/K_PKE.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_decaps.dir/build.make CMakeFiles/mlkem_decaps.dir/include/ml-kem/K_PKE.cpp.s
 .PHONY : include/ml-kem/K_PKE.cpp.s
 
 include/ml-kem/ML-KEM.o: include/ml-kem/ML-KEM.cpp.o
@@ -182,6 +207,9 @@ include/ml-kem/ML-KEM.o: include/ml-kem/ML-KEM.cpp.o
 # target to build an object file
 include/ml-kem/ML-KEM.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Test.exe.dir/build.make CMakeFiles/Test.exe.dir/include/ml-kem/ML-KEM.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_keygen.dir/build.make CMakeFiles/mlkem_keygen.dir/include/ml-kem/ML-KEM.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_encaps.dir/build.make CMakeFiles/mlkem_encaps.dir/include/ml-kem/ML-KEM.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_decaps.dir/build.make CMakeFiles/mlkem_decaps.dir/include/ml-kem/ML-KEM.cpp.o
 .PHONY : include/ml-kem/ML-KEM.cpp.o
 
 include/ml-kem/ML-KEM.i: include/ml-kem/ML-KEM.cpp.i
@@ -190,6 +218,9 @@ include/ml-kem/ML-KEM.i: include/ml-kem/ML-KEM.cpp.i
 # target to preprocess a source file
 include/ml-kem/ML-KEM.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Test.exe.dir/build.make CMakeFiles/Test.exe.dir/include/ml-kem/ML-KEM.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_keygen.dir/build.make CMakeFiles/mlkem_keygen.dir/include/ml-kem/ML-KEM.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_encaps.dir/build.make CMakeFiles/mlkem_encaps.dir/include/ml-kem/ML-KEM.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_decaps.dir/build.make CMakeFiles/mlkem_decaps.dir/include/ml-kem/ML-KEM.cpp.i
 .PHONY : include/ml-kem/ML-KEM.cpp.i
 
 include/ml-kem/ML-KEM.s: include/ml-kem/ML-KEM.cpp.s
@@ -198,6 +229,9 @@ include/ml-kem/ML-KEM.s: include/ml-kem/ML-KEM.cpp.s
 # target to generate assembly for a file
 include/ml-kem/ML-KEM.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Test.exe.dir/build.make CMakeFiles/Test.exe.dir/include/ml-kem/ML-KEM.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_keygen.dir/build.make CMakeFiles/mlkem_keygen.dir/include/ml-kem/ML-KEM.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_encaps.dir/build.make CMakeFiles/mlkem_encaps.dir/include/ml-kem/ML-KEM.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_decaps.dir/build.make CMakeFiles/mlkem_decaps.dir/include/ml-kem/ML-KEM.cpp.s
 .PHONY : include/ml-kem/ML-KEM.cpp.s
 
 include/ml-kem/base.o: include/ml-kem/base.cpp.o
@@ -206,7 +240,9 @@ include/ml-kem/base.o: include/ml-kem/base.cpp.o
 # target to build an object file
 include/ml-kem/base.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Test.exe.dir/build.make CMakeFiles/Test.exe.dir/include/ml-kem/base.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ntt_test.exe.dir/build.make CMakeFiles/ntt_test.exe.dir/include/ml-kem/base.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_keygen.dir/build.make CMakeFiles/mlkem_keygen.dir/include/ml-kem/base.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_encaps.dir/build.make CMakeFiles/mlkem_encaps.dir/include/ml-kem/base.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_decaps.dir/build.make CMakeFiles/mlkem_decaps.dir/include/ml-kem/base.cpp.o
 .PHONY : include/ml-kem/base.cpp.o
 
 include/ml-kem/base.i: include/ml-kem/base.cpp.i
@@ -215,7 +251,9 @@ include/ml-kem/base.i: include/ml-kem/base.cpp.i
 # target to preprocess a source file
 include/ml-kem/base.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Test.exe.dir/build.make CMakeFiles/Test.exe.dir/include/ml-kem/base.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ntt_test.exe.dir/build.make CMakeFiles/ntt_test.exe.dir/include/ml-kem/base.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_keygen.dir/build.make CMakeFiles/mlkem_keygen.dir/include/ml-kem/base.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_encaps.dir/build.make CMakeFiles/mlkem_encaps.dir/include/ml-kem/base.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_decaps.dir/build.make CMakeFiles/mlkem_decaps.dir/include/ml-kem/base.cpp.i
 .PHONY : include/ml-kem/base.cpp.i
 
 include/ml-kem/base.s: include/ml-kem/base.cpp.s
@@ -224,7 +262,9 @@ include/ml-kem/base.s: include/ml-kem/base.cpp.s
 # target to generate assembly for a file
 include/ml-kem/base.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Test.exe.dir/build.make CMakeFiles/Test.exe.dir/include/ml-kem/base.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ntt_test.exe.dir/build.make CMakeFiles/ntt_test.exe.dir/include/ml-kem/base.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_keygen.dir/build.make CMakeFiles/mlkem_keygen.dir/include/ml-kem/base.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_encaps.dir/build.make CMakeFiles/mlkem_encaps.dir/include/ml-kem/base.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_decaps.dir/build.make CMakeFiles/mlkem_decaps.dir/include/ml-kem/base.cpp.s
 .PHONY : include/ml-kem/base.cpp.s
 
 include/ml-kem/ntt.o: include/ml-kem/ntt.cpp.o
@@ -233,7 +273,9 @@ include/ml-kem/ntt.o: include/ml-kem/ntt.cpp.o
 # target to build an object file
 include/ml-kem/ntt.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Test.exe.dir/build.make CMakeFiles/Test.exe.dir/include/ml-kem/ntt.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ntt_test.exe.dir/build.make CMakeFiles/ntt_test.exe.dir/include/ml-kem/ntt.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_keygen.dir/build.make CMakeFiles/mlkem_keygen.dir/include/ml-kem/ntt.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_encaps.dir/build.make CMakeFiles/mlkem_encaps.dir/include/ml-kem/ntt.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_decaps.dir/build.make CMakeFiles/mlkem_decaps.dir/include/ml-kem/ntt.cpp.o
 .PHONY : include/ml-kem/ntt.cpp.o
 
 include/ml-kem/ntt.i: include/ml-kem/ntt.cpp.i
@@ -242,7 +284,9 @@ include/ml-kem/ntt.i: include/ml-kem/ntt.cpp.i
 # target to preprocess a source file
 include/ml-kem/ntt.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Test.exe.dir/build.make CMakeFiles/Test.exe.dir/include/ml-kem/ntt.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ntt_test.exe.dir/build.make CMakeFiles/ntt_test.exe.dir/include/ml-kem/ntt.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_keygen.dir/build.make CMakeFiles/mlkem_keygen.dir/include/ml-kem/ntt.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_encaps.dir/build.make CMakeFiles/mlkem_encaps.dir/include/ml-kem/ntt.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_decaps.dir/build.make CMakeFiles/mlkem_decaps.dir/include/ml-kem/ntt.cpp.i
 .PHONY : include/ml-kem/ntt.cpp.i
 
 include/ml-kem/ntt.s: include/ml-kem/ntt.cpp.s
@@ -251,7 +295,9 @@ include/ml-kem/ntt.s: include/ml-kem/ntt.cpp.s
 # target to generate assembly for a file
 include/ml-kem/ntt.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Test.exe.dir/build.make CMakeFiles/Test.exe.dir/include/ml-kem/ntt.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ntt_test.exe.dir/build.make CMakeFiles/ntt_test.exe.dir/include/ml-kem/ntt.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_keygen.dir/build.make CMakeFiles/mlkem_keygen.dir/include/ml-kem/ntt.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_encaps.dir/build.make CMakeFiles/mlkem_encaps.dir/include/ml-kem/ntt.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_decaps.dir/build.make CMakeFiles/mlkem_decaps.dir/include/ml-kem/ntt.cpp.s
 .PHONY : include/ml-kem/ntt.cpp.s
 
 include/ml-kem/sampling.o: include/ml-kem/sampling.cpp.o
@@ -260,7 +306,9 @@ include/ml-kem/sampling.o: include/ml-kem/sampling.cpp.o
 # target to build an object file
 include/ml-kem/sampling.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Test.exe.dir/build.make CMakeFiles/Test.exe.dir/include/ml-kem/sampling.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ntt_test.exe.dir/build.make CMakeFiles/ntt_test.exe.dir/include/ml-kem/sampling.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_keygen.dir/build.make CMakeFiles/mlkem_keygen.dir/include/ml-kem/sampling.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_encaps.dir/build.make CMakeFiles/mlkem_encaps.dir/include/ml-kem/sampling.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_decaps.dir/build.make CMakeFiles/mlkem_decaps.dir/include/ml-kem/sampling.cpp.o
 .PHONY : include/ml-kem/sampling.cpp.o
 
 include/ml-kem/sampling.i: include/ml-kem/sampling.cpp.i
@@ -269,7 +317,9 @@ include/ml-kem/sampling.i: include/ml-kem/sampling.cpp.i
 # target to preprocess a source file
 include/ml-kem/sampling.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Test.exe.dir/build.make CMakeFiles/Test.exe.dir/include/ml-kem/sampling.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ntt_test.exe.dir/build.make CMakeFiles/ntt_test.exe.dir/include/ml-kem/sampling.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_keygen.dir/build.make CMakeFiles/mlkem_keygen.dir/include/ml-kem/sampling.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_encaps.dir/build.make CMakeFiles/mlkem_encaps.dir/include/ml-kem/sampling.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_decaps.dir/build.make CMakeFiles/mlkem_decaps.dir/include/ml-kem/sampling.cpp.i
 .PHONY : include/ml-kem/sampling.cpp.i
 
 include/ml-kem/sampling.s: include/ml-kem/sampling.cpp.s
@@ -278,8 +328,82 @@ include/ml-kem/sampling.s: include/ml-kem/sampling.cpp.s
 # target to generate assembly for a file
 include/ml-kem/sampling.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Test.exe.dir/build.make CMakeFiles/Test.exe.dir/include/ml-kem/sampling.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ntt_test.exe.dir/build.make CMakeFiles/ntt_test.exe.dir/include/ml-kem/sampling.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_keygen.dir/build.make CMakeFiles/mlkem_keygen.dir/include/ml-kem/sampling.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_encaps.dir/build.make CMakeFiles/mlkem_encaps.dir/include/ml-kem/sampling.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_decaps.dir/build.make CMakeFiles/mlkem_decaps.dir/include/ml-kem/sampling.cpp.s
 .PHONY : include/ml-kem/sampling.cpp.s
+
+src/mlkem_decaps.o: src/mlkem_decaps.cpp.o
+.PHONY : src/mlkem_decaps.o
+
+# target to build an object file
+src/mlkem_decaps.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_decaps.dir/build.make CMakeFiles/mlkem_decaps.dir/src/mlkem_decaps.cpp.o
+.PHONY : src/mlkem_decaps.cpp.o
+
+src/mlkem_decaps.i: src/mlkem_decaps.cpp.i
+.PHONY : src/mlkem_decaps.i
+
+# target to preprocess a source file
+src/mlkem_decaps.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_decaps.dir/build.make CMakeFiles/mlkem_decaps.dir/src/mlkem_decaps.cpp.i
+.PHONY : src/mlkem_decaps.cpp.i
+
+src/mlkem_decaps.s: src/mlkem_decaps.cpp.s
+.PHONY : src/mlkem_decaps.s
+
+# target to generate assembly for a file
+src/mlkem_decaps.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_decaps.dir/build.make CMakeFiles/mlkem_decaps.dir/src/mlkem_decaps.cpp.s
+.PHONY : src/mlkem_decaps.cpp.s
+
+src/mlkem_encaps.o: src/mlkem_encaps.cpp.o
+.PHONY : src/mlkem_encaps.o
+
+# target to build an object file
+src/mlkem_encaps.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_encaps.dir/build.make CMakeFiles/mlkem_encaps.dir/src/mlkem_encaps.cpp.o
+.PHONY : src/mlkem_encaps.cpp.o
+
+src/mlkem_encaps.i: src/mlkem_encaps.cpp.i
+.PHONY : src/mlkem_encaps.i
+
+# target to preprocess a source file
+src/mlkem_encaps.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_encaps.dir/build.make CMakeFiles/mlkem_encaps.dir/src/mlkem_encaps.cpp.i
+.PHONY : src/mlkem_encaps.cpp.i
+
+src/mlkem_encaps.s: src/mlkem_encaps.cpp.s
+.PHONY : src/mlkem_encaps.s
+
+# target to generate assembly for a file
+src/mlkem_encaps.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_encaps.dir/build.make CMakeFiles/mlkem_encaps.dir/src/mlkem_encaps.cpp.s
+.PHONY : src/mlkem_encaps.cpp.s
+
+src/mlkem_keygen.o: src/mlkem_keygen.cpp.o
+.PHONY : src/mlkem_keygen.o
+
+# target to build an object file
+src/mlkem_keygen.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_keygen.dir/build.make CMakeFiles/mlkem_keygen.dir/src/mlkem_keygen.cpp.o
+.PHONY : src/mlkem_keygen.cpp.o
+
+src/mlkem_keygen.i: src/mlkem_keygen.cpp.i
+.PHONY : src/mlkem_keygen.i
+
+# target to preprocess a source file
+src/mlkem_keygen.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_keygen.dir/build.make CMakeFiles/mlkem_keygen.dir/src/mlkem_keygen.cpp.i
+.PHONY : src/mlkem_keygen.cpp.i
+
+src/mlkem_keygen.s: src/mlkem_keygen.cpp.s
+.PHONY : src/mlkem_keygen.s
+
+# target to generate assembly for a file
+src/mlkem_keygen.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_keygen.dir/build.make CMakeFiles/mlkem_keygen.dir/src/mlkem_keygen.cpp.s
+.PHONY : src/mlkem_keygen.cpp.s
 
 src/test.o: src/test.cpp.o
 .PHONY : src/test.o
@@ -305,37 +429,15 @@ src/test.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Test.exe.dir/build.make CMakeFiles/Test.exe.dir/src/test.cpp.s
 .PHONY : src/test.cpp.s
 
-test/ntt_test.o: test/ntt_test.cpp.o
-.PHONY : test/ntt_test.o
-
-# target to build an object file
-test/ntt_test.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ntt_test.exe.dir/build.make CMakeFiles/ntt_test.exe.dir/test/ntt_test.cpp.o
-.PHONY : test/ntt_test.cpp.o
-
-test/ntt_test.i: test/ntt_test.cpp.i
-.PHONY : test/ntt_test.i
-
-# target to preprocess a source file
-test/ntt_test.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ntt_test.exe.dir/build.make CMakeFiles/ntt_test.exe.dir/test/ntt_test.cpp.i
-.PHONY : test/ntt_test.cpp.i
-
-test/ntt_test.s: test/ntt_test.cpp.s
-.PHONY : test/ntt_test.s
-
-# target to generate assembly for a file
-test/ntt_test.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ntt_test.exe.dir/build.make CMakeFiles/ntt_test.exe.dir/test/ntt_test.cpp.s
-.PHONY : test/ntt_test.cpp.s
-
 third_party/keccak/simple_fips_202.o: third_party/keccak/simple_fips_202.c.o
 .PHONY : third_party/keccak/simple_fips_202.o
 
 # target to build an object file
 third_party/keccak/simple_fips_202.c.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Test.exe.dir/build.make CMakeFiles/Test.exe.dir/third_party/keccak/simple_fips_202.c.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ntt_test.exe.dir/build.make CMakeFiles/ntt_test.exe.dir/third_party/keccak/simple_fips_202.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_keygen.dir/build.make CMakeFiles/mlkem_keygen.dir/third_party/keccak/simple_fips_202.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_encaps.dir/build.make CMakeFiles/mlkem_encaps.dir/third_party/keccak/simple_fips_202.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_decaps.dir/build.make CMakeFiles/mlkem_decaps.dir/third_party/keccak/simple_fips_202.c.o
 .PHONY : third_party/keccak/simple_fips_202.c.o
 
 third_party/keccak/simple_fips_202.i: third_party/keccak/simple_fips_202.c.i
@@ -344,7 +446,9 @@ third_party/keccak/simple_fips_202.i: third_party/keccak/simple_fips_202.c.i
 # target to preprocess a source file
 third_party/keccak/simple_fips_202.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Test.exe.dir/build.make CMakeFiles/Test.exe.dir/third_party/keccak/simple_fips_202.c.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ntt_test.exe.dir/build.make CMakeFiles/ntt_test.exe.dir/third_party/keccak/simple_fips_202.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_keygen.dir/build.make CMakeFiles/mlkem_keygen.dir/third_party/keccak/simple_fips_202.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_encaps.dir/build.make CMakeFiles/mlkem_encaps.dir/third_party/keccak/simple_fips_202.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_decaps.dir/build.make CMakeFiles/mlkem_decaps.dir/third_party/keccak/simple_fips_202.c.i
 .PHONY : third_party/keccak/simple_fips_202.c.i
 
 third_party/keccak/simple_fips_202.s: third_party/keccak/simple_fips_202.c.s
@@ -353,7 +457,9 @@ third_party/keccak/simple_fips_202.s: third_party/keccak/simple_fips_202.c.s
 # target to generate assembly for a file
 third_party/keccak/simple_fips_202.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Test.exe.dir/build.make CMakeFiles/Test.exe.dir/third_party/keccak/simple_fips_202.c.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/ntt_test.exe.dir/build.make CMakeFiles/ntt_test.exe.dir/third_party/keccak/simple_fips_202.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_keygen.dir/build.make CMakeFiles/mlkem_keygen.dir/third_party/keccak/simple_fips_202.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_encaps.dir/build.make CMakeFiles/mlkem_encaps.dir/third_party/keccak/simple_fips_202.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mlkem_decaps.dir/build.make CMakeFiles/mlkem_decaps.dir/third_party/keccak/simple_fips_202.c.s
 .PHONY : third_party/keccak/simple_fips_202.c.s
 
 # Help Target
@@ -364,9 +470,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... test"
 	@echo "... Test.exe"
-	@echo "... ntt_test.exe"
+	@echo "... mlkem_decaps"
+	@echo "... mlkem_encaps"
+	@echo "... mlkem_keygen"
 	@echo "... include/ml-kem/K_PKE.o"
 	@echo "... include/ml-kem/K_PKE.i"
 	@echo "... include/ml-kem/K_PKE.s"
@@ -382,12 +489,18 @@ help:
 	@echo "... include/ml-kem/sampling.o"
 	@echo "... include/ml-kem/sampling.i"
 	@echo "... include/ml-kem/sampling.s"
+	@echo "... src/mlkem_decaps.o"
+	@echo "... src/mlkem_decaps.i"
+	@echo "... src/mlkem_decaps.s"
+	@echo "... src/mlkem_encaps.o"
+	@echo "... src/mlkem_encaps.i"
+	@echo "... src/mlkem_encaps.s"
+	@echo "... src/mlkem_keygen.o"
+	@echo "... src/mlkem_keygen.i"
+	@echo "... src/mlkem_keygen.s"
 	@echo "... src/test.o"
 	@echo "... src/test.i"
 	@echo "... src/test.s"
-	@echo "... test/ntt_test.o"
-	@echo "... test/ntt_test.i"
-	@echo "... test/ntt_test.s"
 	@echo "... third_party/keccak/simple_fips_202.o"
 	@echo "... third_party/keccak/simple_fips_202.i"
 	@echo "... third_party/keccak/simple_fips_202.s"

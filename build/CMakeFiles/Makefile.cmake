@@ -45,5 +45,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/Test.exe.dir/DependInfo.cmake"
-  "CMakeFiles/ntt_test.exe.dir/DependInfo.cmake"
+  "CMakeFiles/mlkem_keygen.dir/DependInfo.cmake"
+  "CMakeFiles/mlkem_encaps.dir/DependInfo.cmake"
+  "CMakeFiles/mlkem_decaps.dir/DependInfo.cmake"
   )

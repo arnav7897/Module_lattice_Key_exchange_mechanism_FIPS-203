@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ML-KEM Operations</title>
+  <link rel="stylesheet" href="./index.css">  
+  <script src="./animate.js"></script>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: white;
+      padding: 2em;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 1em;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      color: white;
+    }
+
+    .btn-keygen { background-color: #007bff; }
+    .btn-encaps { background-color: #6f42c1; }
+    .btn-decaps { background-color: #fd7e14; }
+
+    pre {
+      background: white;
+      text-align: left;
+      padding: 15px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      width: 80%;
+      margin: 1em auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .label {
+      font-weight: bold;
+      margin-top: 1.5em;
+    }
+
+    .success {
+      color: green;
+      font-weight: bold;
+      margin-top: 1em;
+    }
+
+    .error {
+      color: red;
+      font-weight: bold;
+    }
+    
+  </style>
+</head>
+<body>
+    <div id="splashScreen" class="intro">
+            <img class="logo" src="./unnamed.jpg"> 
+    </div>
+  <h1>ML-KEM Operations</h1>
+
+  <button class="btn-keygen" onclick="runKeygen()">🔐 KeyGen</button>
+  <button class="btn-encaps" onclick="runEncaps()">📦 Encaps</button>
+  <button class="btn-decaps" onclick="runDecaps()">🔓 Decaps</button>
+
+  <div class="label">Public Key</div>
+  <pre id="pubkey">--</pre>
+
+  <div class="label">Secret Key</div>
+  <pre id="secretkey">--</pre>
+
+  <div class="label">Ciphertext</div>
+  <pre id="ciphertext">--</pre>
+
+  <div class="label">Shared Key (Encaps)</div>
+  <pre id="shared_encaps">--</pre>
+
+  <div class="label">Shared Key (Decaps)</div>
+  <pre id="shared_decaps">--</pre>
+
+  <div id="resultMessage" class="success"></div>
+
+  <script>
+    let pubkey = "", secretkey = "", ciphertext = "";
+    let sharedEncaps = "", sharedDecaps = "";
+
+    async function runKeygen() {
+      reset();
+      const res = await fetch("/keygen");
+      const data = await res.json();
+      pubkey = data.pubkey;
+      secretkey = data.secretkey;
+      document.getElementById("pubkey").innerText = pubkey;
+      document.getElementById("secretkey").innerText = secretkey;
+    }
+
+    async function runEncaps() {
+      if (!pubkey) return alert("Generate a key first");
+      const res = await fetch("/encaps", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ pubkey })
+      });
+      const data = await res.json();
+      sharedEncaps = data.shared;
+      ciphertext = data.ciphertext;
+      document.getElementById("ciphertext").innerText = ciphertext;
+      document.getElementById("shared_encaps").innerText = sharedEncaps;
+    }
+
+    async function runDecaps() {
+      if (!secretkey || !ciphertext) return alert("Run encapsulation first");
+      const res = await fetch("/decaps", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ secretkey, ciphertext })
+      });
+      const data = await res.json();
+      sharedDecaps = data.shared;
+      document.getElementById("shared_decaps").innerText = sharedDecaps;
+
+      const msg = document.getElementById("resultMessage");
+      if (sharedEncaps === sharedDecaps) {
+        msg.innerHTML = "✅ <b>Success:</b> Shared keys match!";
+        msg.className = "success";
+      } else {
+        msg.innerHTML = "❌ <b>Error:</b> Shared keys DO NOT match!";
+        msg.className = "error";
+      }
+    }
+
+    function reset() {
+      document.getElementById("pubkey").innerText = "--";
+      document.getElementById("secretkey").innerText = "--";
+      document.getElementById("ciphertext").innerText = "--";
+      document.getElementById("shared_encaps").innerText = "--";
+      document.getElementById("shared_decaps").innerText = "--";
+      document.getElementById("resultMessage").innerText = "";
+      pubkey = secretkey = ciphertext = sharedEncaps = sharedDecaps = "";
+    }
+  </script>
+</body>
+</html>
