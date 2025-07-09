@@ -35,4 +35,4 @@
 build/*
 .vscode/settings.json
 token.txt
-
+sample.*

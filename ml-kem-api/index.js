@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json({ limit: "5mb" }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-const BIN_DIR = "../build";
+const BIN_DIR = path.resolve(__dirname, "../build");
 
 // Endpoint: Key Generation
 app.get("/keygen", (req, res) => {

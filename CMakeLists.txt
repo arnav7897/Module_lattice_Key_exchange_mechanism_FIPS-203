@@ -10,8 +10,6 @@ include_directories(
     ${PROJECT_SOURCE_DIR}/include
     ${PROJECT_SOURCE_DIR}/third_party/keccak
 )
-
-# Main source files
 set(SOURCES
     include/ml-kem/base.cpp
     include/ml-kem/sampling.cpp
@@ -20,7 +18,6 @@ set(SOURCES
     include/ml-kem/ML-KEM.cpp
     third_party/keccak/simple_fips_202.c
 )
-
 # Main executable
 add_executable(Test.exe src/test.cpp ${SOURCES})
 add_executable(mlkem_keygen src/mlkem_keygen.cpp ${SOURCES})
