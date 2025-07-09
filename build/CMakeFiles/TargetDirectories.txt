@@ -1,6 +1,0 @@
-/mnt/c/Users/Asus/Documents/extra/crypto/LWE-Cryptosystem/build/CMakeFiles/Test.exe.dir
-/mnt/c/Users/Asus/Documents/extra/crypto/LWE-Cryptosystem/build/CMakeFiles/mlkem_keygen.dir
-/mnt/c/Users/Asus/Documents/extra/crypto/LWE-Cryptosystem/build/CMakeFiles/mlkem_encaps.dir
-/mnt/c/Users/Asus/Documents/extra/crypto/LWE-Cryptosystem/build/CMakeFiles/mlkem_decaps.dir
-/mnt/c/Users/Asus/Documents/extra/crypto/LWE-Cryptosystem/build/CMakeFiles/edit_cache.dir
-/mnt/c/Users/Asus/Documents/extra/crypto/LWE-Cryptosystem/build/CMakeFiles/rebuild_cache.dir
