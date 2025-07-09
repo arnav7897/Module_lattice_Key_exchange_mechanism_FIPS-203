@@ -1,6 +1,6 @@
 # 📘 Learning With Errors (LWE) – Foundation of ML-KEM
 
-The **Learning With Errors (LWE)** problem is the mathematical foundation behind ML-KEM (Kyber), a quantum-secure Key Encapsulation Mechanism standardized in [FIPS 203](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.ipd.pdf). It is considered hard **even for quantum computers** and forms the basis of security for many post-quantum cryptosystems.
+The **Learning With Errors (LWE)** problem is the mathematical foundation behind ML-KEM (Kyber), a quantum-secure Key Encapsulation Mechanism standardized in [FIPS 203]([https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.203.ipd.pdf](https://csrc.nist.gov/pubs/fips/203/final)). It is considered hard **even for quantum computers** and forms the basis of security for many post-quantum cryptosystems.
 
 ---
 
@@ -84,7 +84,7 @@ See Regev’s reduction (2005) for formal proof.
 
 ## 📚 References
 
-- Oded Regev, "[On lattices, learning with errors, random linear codes, and cryptography](https://cseweb.ucsd.edu/~daniele/research/crypto/regev2009.pdf)"
+- Oded Regev, "[On lattices, learning with errors, random linear codes, and cryptography]([https://cseweb.ucsd.edu/~daniele/research/crypto/regev2009.pdf](https://cims.nyu.edu/~regev/papers/qcrypto.pdf))"
 - [Kyber Specification (ML-KEM)](https://pq-crystals.org/kyber/)
 - [FIPS 203 Standard for ML-KEM](https://csrc.nist.gov/publications/detail/fips/203/ipd)
 
