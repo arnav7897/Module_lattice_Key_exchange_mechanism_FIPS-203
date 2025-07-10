@@ -32,7 +32,7 @@
 *.app
 
 #folders
-build/*
+build
 .vscode/settings.json
 token.txt
 sample.*
